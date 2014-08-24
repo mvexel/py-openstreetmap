@@ -1,5 +1,6 @@
 from datetime import datetime
 import dateutil
+import requests
 
 
 class OSMFeature(object):
@@ -15,6 +16,7 @@ class OSMFeature(object):
             self.timestamp = datetime.now()
         self.user = kwargs.get("user", None)
         self.uid = kwargs.get("uid", None)
+        super(OSMFeature, self).__init__(*args, **kwargs)
 
     def __repr__(self):
         return "OSM {type} with id {osmid}".format(type=self.__class__.__name__, osmid=self.osmid)
@@ -55,3 +57,11 @@ class OSMException(Exception):
 
     def __init__(self, message):
         Exception.__init__(self, message)
+
+
+class APIServer(object):
+    def __init__(self, *args, **kwargs):
+        super(APIServer, self).__init__(*args, **kwargs)
+
+    def Get(self, osmtype, osmid):
+        pass
