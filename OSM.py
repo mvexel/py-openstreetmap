@@ -5,9 +5,7 @@ import dateutil
 class OSMFeature(object):
 
     def __init__(self, *args, **kwargs):
-        if "osmid" not in kwargs:
-            raise OSMException("object must have an id")
-        self.osmid = kwargs["osmid"]
+        self.osmid = kwargs.get("osmid", 0)
         self.visible = kwargs.get("visible", "True")
         self.version = kwargs.get("version", 1)
         self.changeset = kwargs.get("changeset", None)
